@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; background-color: #f4f4f9; color: #333; text-align: center; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1 { color: #4a4a4a; }
+        .prediction { font-size: 2em; font-weight: bold; margin: 0.5em 0; }
+        .prediction.CONFIRMED { color: #28a745; }
+        .prediction.CANDIDATE { color: #ffc107; }
+        .prediction.FALSE-POSITIVE { color: #dc3545; }
+        .probabilities { margin-top: 2em; }
+        .prob-bar-container { width: 100%; background-color: #e9ecef; border-radius: 4px; margin-bottom: 0.5em; }
+        .prob-bar { height: 24px; text-align: right; padding-right: 5px; line-height: 24px; color: white; border-radius: 4px; }
+        .prob-bar.CONFIRMED { background-color: #28a745; }
+        .prob-bar.CANDIDATE { background-color: #ffc107; }
+        .prob-bar.FALSE-POSITIVE { background-color: #dc3545; }
+        a { display: inline-block; margin-top: 2em; padding: 0.8em 1.5em; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; transition: background-color 0.3s; }
+        a:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <p>The model predicts the exoplanet candidate is:</p>
+        <div class="prediction {{ prediction | upper | replace(' ', '-') }}">{{ prediction }}</div>
+
+        <div class="probabilities">
+            <h3>Prediction Confidence:</h3>
+            {% for class, prob in probabilities.items() %}
+                <label>{{ class }}</label>
+                <div class="prob-bar-container">
+                    <div class="prob-bar {{ class | upper | replace(' ', '-') }}" style="width: {{ prob * 100 }}%;">
+                        {{ "%.2f" | format(prob * 100) }}%
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a href="/">Make another prediction</a>
+    </div>
+</body>
+</html>
