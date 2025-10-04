@@ -1,3 +1,3 @@
-# Will-It-Rain-On-My-Parade-BARKED
+# Exoplanets-BARKED
 BARKED Team Project Repository for NASA Space App Challenge 2025
 
