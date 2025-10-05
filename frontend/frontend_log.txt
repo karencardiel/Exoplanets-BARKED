@@ -1,0 +1,22 @@
+
+> frontend@0.1.0 start
+> react-scripts start
+
+(node:43456) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:43456) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+Starting the development server...
+
+Compiled with warnings.
+
+Failed to parse source map from 'C:\Users\ingen\Documents\Exoplanets-BARKED\frontend\node_modules\@mediapipe\tasks-vision\vision_bundle_mjs.js.map' file: Error: ENOENT: no such file or directory, open 'C:\Users\ingen\Documents\Exoplanets-BARKED\frontend\node_modules\@mediapipe\tasks-vision\vision_bundle_mjs.js.map'
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+[1m[33mWARNING[39m[22m in [1m./node_modules/@mediapipe/tasks-vision/vision_bundle.mjs[39m[22m
+[1mModule Warning (from ./node_modules/source-map-loader/dist/cjs.js):
+[1m[31mFailed[39m[22m[1m to parse source map from 'C:\Users\ingen\Documents\Exoplanets-BARKED\frontend\node_modules\@mediapipe\tasks-vision\vision_bundle_mjs.js.map' file: [1m[31mError[39m[22m[1m: ENOENT: no such file or directory, open 'C:\Users\ingen\Documents\Exoplanets-BARKED\frontend\node_modules\@mediapipe\tasks-vision\vision_bundle_mjs.js.map'[39m[22m
+
+webpack compiled with [1m[33m1 warning[39m[22m
+^C^C

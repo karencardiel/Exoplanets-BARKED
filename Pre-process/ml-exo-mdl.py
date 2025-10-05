@@ -1,7 +1,8 @@
 
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.preprocessing import LabelEncoder
 import joblib
@@ -43,12 +44,40 @@ y_encoded = label_encoder.fit_transform(y)
 # Split the data
 X_train, X_test, y_train, y_test = train_test_split(X, y_encoded, test_size=0.2, random_state=42, stratify=y_encoded)
 
-# --- Model Training ---
+# --- Model Training with Hyperparameter Tuning (XGBoost) ---
 
-print("Training the RandomForestClassifier...")
-model = RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1)
-model.fit(X_train, y_train)
-print("Model training complete.")
+# Define the parameter grid to search for XGBoost
+param_distributions = {
+    'n_estimators': [100, 200, 300, 500],
+    'learning_rate': [0.01, 0.05, 0.1, 0.2],
+    'max_depth': [3, 5, 7, 10],
+    'subsample': [0.7, 0.8, 0.9, 1.0],
+    'colsample_bytree': [0.7, 0.8, 0.9, 1.0],
+    'gamma': [0, 0.1, 0.2, 0.5]
+}
+
+print("Starting hyperparameter tuning for XGBoost with RandomizedSearchCV...")
+# Initialize the model
+# Note: XGBoost can use the GPU if available and correctly configured.
+# For simplicity, we'll stick to CPU training (use_label_encoder is deprecated).
+xgb = XGBClassifier(random_state=42, eval_metric='mlogloss')
+
+# Setup the randomized search
+random_search = RandomizedSearchCV(estimator=xgb, param_distributions=param_distributions,
+                                   n_iter=100,
+                                   cv=3,
+                                   verbose=2,
+                                   random_state=42,
+                                   n_jobs=-1)
+
+# Fit the random search to the data
+random_search.fit(X_train, y_train)
+
+print("Hyperparameter tuning complete.")
+print("Best parameters found: ", random_search.best_params_)
+
+# Use the best estimator found by the search as our definitive model
+model = random_search.best_estimator_
 
 # --- Model Evaluation ---
 
