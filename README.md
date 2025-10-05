@@ -1,4 +1,4 @@
-# Finding Exoplanets: Exoplanet Simulator and Predictor
+# <img src="https://slackmojis.com/emojis/15601-planet-spin/download" width="55" />  Finding Exoplanets: Exoplanet Simulator and Predictor
 
 ![Exoplanet Simulator](https://i.imgur.com/iFhaeEz.png)
 
