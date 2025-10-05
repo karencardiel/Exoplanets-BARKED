@@ -1,8 +1,6 @@
-# Exoplanets-BARKED: Exoplanet Simulator and Predictor
+# Finding Exoplanets: Exoplanet Simulator and Predictor
 
-## Simulator Screenshot
-
-![Exoplanet Simulator](https://imgur.com/a/PM4Twd0)
+![Exoplanet Simulator](https://imgur.com/iFhaeEz)
 
 ## Overview
 
