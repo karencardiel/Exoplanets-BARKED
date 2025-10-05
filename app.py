@@ -68,7 +68,7 @@ def predict():
 
         # Get prediction probabilities
         probabilities = model.predict_proba(input_df)
-        class_probabilities = dict(zip(label_encoder.classes_, probabilities[0]))
+        class_probabilities = {cls: float(prob) for cls, prob in zip(label_encoder.classes_, probabilities[0])}
 
         # Return the result as JSON
         return jsonify({
