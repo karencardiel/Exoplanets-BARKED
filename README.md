@@ -1,6 +1,6 @@
 # Finding Exoplanets: Exoplanet Simulator and Predictor
 
-![Exoplanet Simulator](https://imgur.com/iFhaeEz)
+![Exoplanet Simulator](https://i.imgur.com/iFhaeEz.png)
 
 ## Overview
 
