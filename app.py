@@ -3,6 +3,7 @@ from flask_cors import CORS
 import joblib
 import pandas as pd
 import numpy as np
+import os 
 
 app = Flask(__name__)
 # Allow requests from any origin, which is fine for development
@@ -80,5 +81,5 @@ def predict():
         return jsonify({'error': f'An error occurred during prediction: {str(e)}'}), 500
 
 if __name__ == '__main__':
-    # Note: debug=True is not recommended for production
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
