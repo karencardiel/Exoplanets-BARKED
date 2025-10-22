@@ -9,15 +9,23 @@ app = Flask(__name__)
 # Allow requests from any origin, which is fine for development
 CORS(app) 
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Definir las rutas completas para los archivos .joblib
+MODEL_PATH = os.path.join(BASE_DIR, 'exoplanet_model.joblib')
+ENCODER_PATH = os.path.join(BASE_DIR, 'label_encoder.joblib')
+COLUMNS_PATH = os.path.join(BASE_DIR, 'feature_columns.joblib')
+
 # Load the trained model, encoder, and feature columns
 try:
-    model = joblib.load('exoplanet_model.joblib')
-    label_encoder = joblib.load('label_encoder.joblib')
-    feature_columns = joblib.load('feature_columns.joblib')
+    # Cargar usando la ruta completa
+    model = joblib.load(MODEL_PATH)
+    label_encoder = joblib.load(ENCODER_PATH)
+    feature_columns = joblib.load(COLUMNS_PATH)
     print("Model and supporting files loaded successfully.")
-except FileNotFoundError:
-    print("CRITICAL: Model files not found. The '/predict' endpoint will not work.")
-    print("Make sure you have run the training script 'Pre-process/ml-exo-mdl.py' and the .joblib files are in the root directory.")
+except FileNotFoundError as e:
+    print(f"CRITICAL: Model file not found: {e}. The '/predict' endpoint will not work.")
+    print(f"Buscando en BASE_DIR: {BASE_DIR}") # Útil para depuración
     model = None
     label_encoder = None
     feature_columns = []
