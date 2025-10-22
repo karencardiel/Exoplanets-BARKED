@@ -109,8 +109,10 @@ function App() {
   const handlePredict = async () => {
     setIsLoading(true);
     setPrediction(null);
-      try {
-        const response = await fetch('http://localhost:5000/predict', {
+try {
+        const BACKEND_URL = 'https://mi-proyecto-backend.onrender.com'; // Definimos la URL de Render aquí
+
+        const response = await fetch(`${BACKEND_URL}/predict`, { // Usamos la variable para construir la URL
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
