@@ -5,4 +5,4 @@ pandas==2.2.3
 numpy==2.1.1
 scikit-learn==1.7.2
 xgboost==3.0.5
-guicorn
+gunicorn
