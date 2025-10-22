@@ -7,8 +7,10 @@ import os
 
 app = Flask(__name__)
 # Allow requests from any origin, which is fine for development
-CORS(app) 
+FRONTEND_URL = "https://frontend-barked.onrender.com" 
 
+# Configura CORS para aceptar peticiones SOLO desde tu frontend
+CORS(app, resources={r"/*": {"origins": FRONTEND_URL}})
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # 2. Definir las rutas completas para los archivos .joblib
